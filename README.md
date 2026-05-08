@@ -54,13 +54,13 @@ We're going to structure milestones based off an end-goal and what we need to im
 
 Goal: Create C wrappers for Linux syscalls
 
-- [ ] \__sx_syscall0
-- [ ] \__sx_syscall1
-- [ ] \__sx_syscall2
-- [ ] \__sx_syscall3
-- [ ] \__sx_syscall4
-- [ ] \__sx_syscall5
-- [ ] \__sx_syscall6
+- [x] \__sx_syscall0
+- [x] \__sx_syscall1
+- [x] \__sx_syscall2
+- [x] \__sx_syscall3
+- [x] \__sx_syscall4
+- [x] \__sx_syscall5
+- [x] \__sx_syscall6
 
 ### Milestone 1, Simple Utils
 
