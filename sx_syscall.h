@@ -1,5 +1,10 @@
-#ifndef SMALLIX_SX_SYSCALL
-#define SMALLIX_SX_SYSCALL
+#ifndef SX_SYSCALL
+#define SX_SYSCALL
+
+#define SYS_openat 0x101
+#define SYS_read 0x00
+#define SYS_write 0x01
+#define SYS_close 0x03
 
 typedef long sx_word;
 
