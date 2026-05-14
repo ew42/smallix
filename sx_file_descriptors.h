@@ -4,9 +4,34 @@
 typedef unsigned long sx_size_t;
 typedef long sx_ssize_t;
 
+typedef struct sx_stat {
+	/*
+	 * Byte sizes and signs verified by testing on a x86-64 Linux machine
+	 *
+	 * Byte layout needs to be correct in order for the fstat syscall
+	 * to write to the buffer correctly
+	 */
+	unsigned long st_dev;
+	unsigned long st_ino;
+	unsigned int st_mode;
+	unsigned long st_nlink;
+	unsigned int st_uid;
+	unsigned int st_gid;
+	unsigned long st_rdev;
+	long st_size;
+	long st_blksize;
+	long st_blocks;
+	long st_atime;
+	long st_mtime;
+	long st_ctime;
+} sx_stat;
+
 int sx_openat(int fd, const char *pathname, int flags, ...);
 sx_ssize_t sx_read(int fd, void *buf, sx_size_t n);
 sx_ssize_t sx_write(int fd, const char *buf, sx_size_t n);
+sx_ssize_t sx_write_all(int fd, const char *buf, sx_size_t n);
 int sx_close(int fd);
+int sx_fstat(int fd, struct sx_stat *buf);
+void exit(int status);
 
 #endif

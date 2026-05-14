@@ -5,6 +5,8 @@
 #define SYS_read 0x00
 #define SYS_write 0x01
 #define SYS_close 0x03
+#define SYS_fstat 0x05
+#define SYS_exit_group 0xe7
 
 typedef long sx_word;
 
