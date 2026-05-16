@@ -6,21 +6,21 @@ A small posix-style userland designed for Linux x86-64 in C.
 - [ ] Runtime
     - [ ] Syscall wrappers
         - [ ] File Descriptors
-            - [ ] sx_read
-            - [ ] sx_write
-            - [ ] sx_write_all
-            - [ ] sx_open
-            - [ ] sx_close
+            - [x] sx_read
+            - [x] sx_write
+            - [x] sx_write_all
+            - [x] sx_open
+            - [x] sx_close
             - [ ] sx_dup2
             - [ ] sx_pipe
         - [ ] Processes
-            - [ ] sx_exit
+            - [x] sx_exit
             - [ ] sx_fork
             - [ ] sx_execve
             - [ ] sx_waitpid
         - [ ] Files and paths
             - [ ] sx_stat
-            - [ ] sx_fstat
+            - [x] sx_fstat
             - [ ] sx_lstat
             - [ ] sx_unlink
             - [ ] sx_mkdir
@@ -70,13 +70,13 @@ Goal: Create C wrappers for Linux syscalls
 
 In order to implement those, we need
 
-- [ ] sx_read
-- [ ] sx_write
-- [ ] sx_write_all
-- [ ] sx_open
-- [ ] sx_close
-- [ ] sx_exit
-- [ ] sx_fstat
+- [x] sx_read
+- [x] sx_write
+- [x] sx_write_all
+- [x] sx_open
+- [x] sx_close
+- [x] sx_exit
+- [x] sx_fstat
 
 ### Milestone 2, Process Runtime + Command Execution
 
@@ -95,4 +95,3 @@ we need
 - [ ] sx_fork
 - [ ] sx_execve
 - [ ] sx_waitpid
-
