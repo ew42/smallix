@@ -72,15 +72,20 @@ sx_ssize_t sx_write_all(int fd, const char *buf, sx_size_t n) {
 	sx_ssize_t n_written;
 	sx_size_t n_left = n;
 
-	while (n_left > 0) {
-		if (n_written = sx_write(fd, buf, n_left) <= 0) {
+	int loop_n = 0;
+
+	while (n_left > 0 && loop_n < 100) {
+		if ((n_written = sx_write(fd, buf, n_left)) <= 0) {
 			if (errno == EINTR) // if interrupted by a signal handler, restart
 				n_written = 0;
 			else
 				return -1;
 		}
+		printf("n_left: %lu\n", n_left);
+		printf("n_written: %ld\n", n_written);
 		n_left -= n_written;
 		buf += n_written;
+		loop_n++;
 	}
 	return n;
 }
@@ -114,7 +119,7 @@ int sx_fstat(int fd, struct sx_stat *buf) {
 	return (int)ret;
 }
 
-void exit(int status) {
+void sx_exit(int status) {
 	sx_syscall1(SYS_exit_group, status); // exit_group, man 2 exit_group: "terminates all threads in the calling process's thread group"
 	__builtin_unreachable(); // tells compiler that this shouldn't be reachable
 }

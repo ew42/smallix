@@ -32,6 +32,6 @@ sx_ssize_t sx_write(int fd, const char *buf, sx_size_t n);
 sx_ssize_t sx_write_all(int fd, const char *buf, sx_size_t n);
 int sx_close(int fd);
 int sx_fstat(int fd, struct sx_stat *buf);
-void exit(int status);
+void sx_exit(int status);
 
 #endif
