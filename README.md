@@ -38,7 +38,7 @@ A small posix-style userland designed for Linux x86-64 in C.
         - [ ] sx_calloc
         - [ ] sx_heap_check
 - [ ] coreutils
-    - [ ] cat
+    - [x] cat
     - [ ] wc
     - [ ] cp
     - [ ] rm 
@@ -65,7 +65,7 @@ Goal: Create C wrappers for Linux syscalls
 
 ### Milestone 1, Simple Utils
 
-- [ ] cat
+- [x] cat
 - [ ] wc
 - [ ] cp (content-only for now, we'll do metadata later)
 

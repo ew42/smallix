@@ -37,30 +37,14 @@ int sx_openat(int fd, const char *pathname, int flags, ...) {
 }
 
 int sx_open(const char *pathname, int flags, ...) {
-	char path_buf[PATH_MAX];
-
-	sx_syscall2( // path_buf now holds CWD
-			(sx_word)SYS_getcwd,
-			(sx_word)path_buf,
-			(sx_word)PATH_MAX
-	);
-
 	mode_t mode = 0;
-	int fd = sx_openat(0, path_buf, SX_O_DIRECTORY);
-	int ret;
-
 	if (O_CREAT & flags) {
 		va_list ap;
 		va_start(ap, flags);
 		mode = va_arg(ap, mode_t);
 		va_end(ap);
-		ret = sx_openat(fd, path_buf, flags, mode);
 	}
-	else {
-		ret = sx_openat(fd, path_buf, flags);
-	}
-
-	return ret;
+	return sx_openat(SX_AT_FDCWD, pathname, flags, mode);
 
 }
 

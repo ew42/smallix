@@ -29,7 +29,7 @@ sx_word sx_syscall1(sx_word n, sx_word arg1) {
 	__asm__ volatile (
 		"syscall \n  "
 		: "=a" (ret)
-		: "r" (n), "r" (rdi)
+		: "r" (rax), "r" (rdi)
 		: "rcx", "r11", "memory"
 	);
 

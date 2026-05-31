@@ -2,8 +2,12 @@
 #define SX_FILE_DESCRIPTORS
 
 #define PATH_MAX 4096 // found by testing on a Linux x86-64 machine
+#define SX_AT_FDCWD -100 // found by testing on a Linux x86-64 machine
 
 #define SX_O_DIRECTORY (1 << 4)
+#define SX_O_RDONLY 0
+#define SX_O_WRONLY 1
+#define SX_O_RDWR (1 << 1)
 
 typedef unsigned long sx_size_t;
 typedef long sx_ssize_t;
