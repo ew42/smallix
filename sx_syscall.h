@@ -7,6 +7,7 @@
 #define SYS_close 0x03
 #define SYS_fstat 0x05
 #define SYS_exit_group 0xe7
+#define SYS_getcwd 0x4f
 
 typedef long sx_word;
 

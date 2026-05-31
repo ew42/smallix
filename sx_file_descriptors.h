@@ -1,6 +1,10 @@
 #ifndef SX_FILE_DESCRIPTORS
 #define SX_FILE_DESCRIPTORS
 
+#define PATH_MAX 4096 // found by testing on a Linux x86-64 machine
+
+#define SX_O_DIRECTORY (1 << 4)
+
 typedef unsigned long sx_size_t;
 typedef long sx_ssize_t;
 
@@ -21,12 +25,13 @@ typedef struct sx_stat {
 	long st_size;
 	long st_blksize;
 	long st_blocks;
-	long st_atime;
-	long st_mtime;
-	long st_ctime;
+	long sx_atime;
+	long sx_mtime;
+	long sx_ctime;
 } sx_stat;
 
 int sx_openat(int fd, const char *pathname, int flags, ...);
+int sx_open(const char *pathname, int flags, ...);
 sx_ssize_t sx_read(int fd, void *buf, sx_size_t n);
 sx_ssize_t sx_write(int fd, const char *buf, sx_size_t n);
 sx_ssize_t sx_write_all(int fd, const char *buf, sx_size_t n);

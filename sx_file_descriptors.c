@@ -36,6 +36,35 @@ int sx_openat(int fd, const char *pathname, int flags, ...) {
 	return (int)ret;
 }
 
+int sx_open(const char *pathname, int flags, ...) {
+	char path_buf[PATH_MAX];
+
+	sx_syscall2( // path_buf now holds CWD
+			(sx_word)SYS_getcwd,
+			(sx_word)path_buf,
+			(sx_word)PATH_MAX
+	);
+
+	mode_t mode = 0;
+	int fd = sx_openat(0, path_buf, SX_O_DIRECTORY);
+	int ret;
+
+	if (O_CREAT & flags) {
+		va_list ap;
+		va_start(ap, flags);
+		mode = va_arg(ap, mode_t);
+		va_end(ap);
+		ret = sx_openat(fd, path_buf, flags, mode);
+	}
+	else {
+		ret = sx_openat(fd, path_buf, flags);
+	}
+
+	return ret;
+
+}
+
+
 sx_ssize_t sx_read(int fd, void *buf, sx_size_t n) {
 	sx_word ret = sx_syscall3(
 			(sx_word)SYS_read,
@@ -58,6 +87,7 @@ sx_ssize_t sx_write(int fd, const char *buf, sx_size_t n) {
 			(sx_word)fd,
 			(sx_word)buf,
 			(sx_word)n
+
 	);
 
 	if ((long)ret < 0) {
@@ -74,15 +104,13 @@ sx_ssize_t sx_write_all(int fd, const char *buf, sx_size_t n) {
 
 	int loop_n = 0;
 
-	while (n_left > 0 && loop_n < 100) {
-		if ((n_written = sx_write(fd, buf, n_left)) <= 0) {
+	while (n_left > 0) {
+		if ((n_written = sx_write(fd, buf, n_left)) <= 0) { // 0 return is treated as a hard error
 			if (errno == EINTR) // if interrupted by a signal handler, restart
 				n_written = 0;
 			else
 				return -1;
 		}
-		printf("n_left: %lu\n", n_left);
-		printf("n_written: %ld\n", n_written);
 		n_left -= n_written;
 		buf += n_written;
 		loop_n++;

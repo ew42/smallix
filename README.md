@@ -9,6 +9,7 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [x] sx_read
             - [x] sx_write
             - [x] sx_write_all
+            - [x] sx_openat
             - [x] sx_open
             - [x] sx_close
             - [ ] sx_dup2
@@ -73,6 +74,7 @@ In order to implement those, we need
 - [x] sx_read
 - [x] sx_write
 - [x] sx_write_all
+- [x] sx_openat
 - [x] sx_open
 - [x] sx_close
 - [x] sx_exit
