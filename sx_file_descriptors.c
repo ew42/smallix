@@ -13,7 +13,7 @@ int sx_openat(int fd, const char *pathname, int flags, ...) {
 
 	mode_t mode = 0;
 
-	if (O_CREAT & flags) {
+	if (SX_O_CREAT & flags) {
 		va_list ap;
 		va_start(ap, flags);
 		mode = va_arg(ap, mode_t);
@@ -38,7 +38,7 @@ int sx_openat(int fd, const char *pathname, int flags, ...) {
 
 int sx_open(const char *pathname, int flags, ...) {
 	mode_t mode = 0;
-	if (O_CREAT & flags) {
+	if (SX_O_CREAT & flags) {
 		va_list ap;
 		va_start(ap, flags);
 		mode = va_arg(ap, mode_t);
@@ -110,6 +110,22 @@ int sx_close(int fd) {
 
 	if ((long)ret < 0) {
 		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (int)ret;
+}
+
+
+int sx_stat(char *pathname, struct sx_stat *buf) {
+	sx_word ret = sx_syscall2(
+			(sx_word)SYS_stat,
+			(sx_word)pathname,
+			(sx_word)buf
+	);
+
+	if ((long)ret < 0) {
+		errno = -(int)ret;
 		ret = -1;
 	}
 

@@ -40,7 +40,7 @@ A small posix-style userland designed for Linux x86-64 in C.
 - [ ] coreutils
     - [x] cat
     - [x] wc
-    - [ ] cp
+    - [x] cp (no directories/symlinks, handles for copy-on-self)
     - [ ] rm 
     - [ ] mkdir
     - [ ] pwd
@@ -67,7 +67,7 @@ Goal: Create C wrappers for Linux syscalls
 
 - [x] cat
 - [x] wc
-- [ ] cp (content-only for now, we'll do metadata later)
+- [x] cp (no directories/symlinks, handles for copy-on-self)
 
 In order to implement those, we need
 
