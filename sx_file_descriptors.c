@@ -5,18 +5,15 @@
 // Explanations for stuff I didn't write
 #include <stdarg.h> // enables handling of variadic function arguments, needed for mode bits
 #include <errno.h> // gives the errno global var, where we set error status
-#include <fcntl.h> // somewhat of a crutch, fnctl defines all of the macros for flags
-#include <sys/stat.h> // for the mode_t type and struct stat
-#include <stdio.h>
 
 int sx_openat(int fd, const char *pathname, int flags, ...) {
 
-	mode_t mode = 0;
+	sx_mode_t mode = 0;
 
 	if (SX_O_CREAT & flags) {
 		va_list ap;
 		va_start(ap, flags);
-		mode = va_arg(ap, mode_t);
+		mode = va_arg(ap, sx_mode_t);
 		va_end(ap);
 	}
 
@@ -37,11 +34,11 @@ int sx_openat(int fd, const char *pathname, int flags, ...) {
 }
 
 int sx_open(const char *pathname, int flags, ...) {
-	mode_t mode = 0;
+	sx_mode_t mode = 0;
 	if (SX_O_CREAT & flags) {
 		va_list ap;
 		va_start(ap, flags);
-		mode = va_arg(ap, mode_t);
+		mode = va_arg(ap, sx_mode_t);
 		va_end(ap);
 	}
 	return sx_openat(SX_AT_FDCWD, pathname, flags, mode);
