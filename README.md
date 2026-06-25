@@ -16,11 +16,11 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [ ] sx_pipe
         - [ ] Processes
             - [x] sx_exit
-            - [ ] sx_fork
-            - [ ] sx_execve
+            - [x] sx_fork
+            - [x] sx_execve
             - [ ] sx_waitpid
         - [ ] Files and paths
-            - [ ] sx_stat
+            - [x] sx_stat
             - [x] sx_fstat
             - [ ] sx_lstat
             - [ ] sx_unlink
@@ -80,20 +80,26 @@ In order to implement those, we need
 - [x] sx_exit
 - [x] sx_fstat
 
-### Milestone 2, Process Runtime + Command Execution
+### Milestone 2, Memory Foundations
 
-Goal: run external commands from the shell
+Goal: Write a minimal bump allocator so future milestone can call sx\_malloc and receive usable outputs
 
-Shell features:
+- [x] sx_malloc (4MB static arena bump allocator)
+- [x] sx_free
 
-- [ ] prompt/read loop
-- [ ] parse whitespace-separated argv
-- [ ] execute absolute/relative paths
-- [ ] wait for foreground command
-- [ ] record child command's exit status
+In order to implement those, we need
 
-we need
+- nothing, as mmap/munmap aren't needed in the simple allocator described
 
-- [ ] sx_fork
-- [ ] sx_execve
+### Milestone 3, Process Lifecycle
+
+Goal: fork a child, exec a program in it, wait for it to finish
+
+- [ ] `./sx-spawn /bin/echo/hello`, forks, execs, parent waits, and prints exit status
+
+In order to implement those, we need
+
+- [x] sx_fork
+- [x] sx_execve
 - [ ] sx_waitpid
+- [ ] sx_dup2
