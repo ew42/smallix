@@ -12,13 +12,13 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [x] sx_openat
             - [x] sx_open
             - [x] sx_close
-            - [ ] sx_dup2
+            - [x] sx_dup2
             - [ ] sx_pipe
         - [ ] Processes
             - [x] sx_exit
             - [x] sx_fork
             - [x] sx_execve
-            - [ ] sx_waitpid
+            - [x] sx_waitpid
         - [ ] Files and paths
             - [x] sx_stat
             - [x] sx_fstat

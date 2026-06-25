@@ -23,5 +23,37 @@ int sx_execve(const char *pathname, char *const argv[], char *const envp[]) {
 	}
 
 	return (int)ret;
-	return ret;
+}
+
+sx_pid_t sx_waitpid(sx_pid_t pid, int *statusp, int options) {
+	sx_pid_t ret = sx_syscall4(
+		(sx_word)SYS_wait4,
+		(sx_word)pid,
+		(sx_word)statusp,
+		(sx_word)options,
+		(sx_word)0
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (sx_pid_t)ret;
+}
+
+int sx_dup2(int oldfd, int newfd) {
+	sx_word ret = sx_syscall2(
+		(sx_word)SYS_dup2,
+		(sx_word)oldfd,
+		(sx_word)newfd
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (sx_pid_t)ret;
+
 }
