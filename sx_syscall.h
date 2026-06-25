@@ -7,8 +7,10 @@
 #define SYS_close 0x03
 #define SYS_stat 0x04
 #define SYS_fstat 0x05
-#define SYS_exit_group 0xe7
+#define SYS_fork 0x39
+#define SYS_execve 0x3b
 #define SYS_getcwd 0x4f
+#define SYS_exit_group 0xe7
 
 typedef long sx_word;
 
