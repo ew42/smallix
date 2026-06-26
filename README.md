@@ -95,11 +95,11 @@ In order to implement those, we need
 
 Goal: fork a child, exec a program in it, wait for it to finish
 
-- [ ] `./sx-spawn /bin/echo/hello`, forks, execs, parent waits, and prints exit status
+- [x] `./sx-spawn /bin/echo hello`, forks, execs, parent waits, and prints exit status
 
 In order to implement those, we need
 
 - [x] sx_fork
 - [x] sx_execve
-- [ ] sx_waitpid
-- [ ] sx_dup2
+- [x] sx_waitpid
+- [x] sx_dup2
