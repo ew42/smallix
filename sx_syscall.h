@@ -12,6 +12,11 @@
 #define SYS_execve 0x3b
 #define SYS_wait4 0x3d
 #define SYS_getcwd 0x4f
+#define SYS_chdir 0x50
+#define SYS_mkdir 0x53
+#define SYS_pivot_root 0x9b
+#define SYS_mount 0xa5
+#define SYS_umount2 0xa6
 #define SYS_exit_group 0xe7
 
 typedef long sx_word;

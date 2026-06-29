@@ -1,5 +1,6 @@
 #include "sx_mem.h"
 #include "sx_file_descriptors.h"
+#include "sx_types.h"
 
 static _Alignas(8) char heap[4096 * 1024];
 static sx_size_t offset = 0;

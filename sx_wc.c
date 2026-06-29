@@ -36,6 +36,7 @@
 #include "sx_file_descriptors.h"
 #include "sx_stdio.h"
 #include "sx_getopt.h"
+#include "sx_types.h"
 
 #define WC_BYTES 1
 #define WC_CHARS (1 << 1)

@@ -14,7 +14,7 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [x] sx_close
             - [x] sx_dup2
             - [ ] sx_pipe
-        - [ ] Processes
+        - [x] Processes
             - [x] sx_exit
             - [x] sx_fork
             - [x] sx_execve
@@ -103,3 +103,61 @@ In order to implement those, we need
 - [x] sx_execve
 - [x] sx_waitpid
 - [x] sx_dup2
+
+### Milestone 4, Filesystem Operations 
+
+- [x] create a directory -> chdir into it -> getcwd gives correct location
+- [x] mount a filesystem -> unmount it
+- [x] pivot_root swaps root filesystem
+
+In order to implement those, we need:
+
+- [x] sx_mkdir
+- [x] sx_chdir
+- [x] sx_getcwd
+- [x] sx_mount
+- [x] sx_umount2
+- [x] sx_pivot_root
+
+### Milestone 5, Namespace Isolation
+
+Goal: fork a child into new PID and UTS namespaces, PID 1 and unique hostname
+
+- [ ] `./sx-isolate /bin/sh`, child runs in a new namespace
+- [ ] `echo $$`, in child prints 1
+- [ ] hostname in child prints 'sx-container'
+- [ ] host PID table and hostname unaffected
+
+In order to implement those, we need:
+
+- [ ] sx_clone with `CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS`
+- [ ] sx_sethostname
+
+### Milestone 6, Filesystem Isolation
+
+Goal: give the contained process its own root filesystem
+
+- [ ] `./sx-contain ./apline-rootfs /bin/sh` drops into isolated shell
+- [ ] `ls /` shows Apline filesystem
+- [ ] `ps` shows only shell (PID 1) and ps itself
+- [ ] no way to reach host filesystem
+
+In order to implement those, we need:
+
+- [ ] bind-mount rootfs to a mount point
+- [ ] sx_pivot_root to swap it in as new root
+- [ ] `chdir("/")`
+- [ ] sx_umount2 old root with MNT_DETACH
+- [ ] sx_mount proc filesystem so /proc works inside
+
+### Milestone 7, Resource Limits
+
+Goal: enforce a memory ceiling on the contained process
+
+- [ ] `./sx-contain -m 64 ./alpine-roofs /bin/sh`, 64MB memory limit
+- [ ] process that allocates 128MB inside container gets OOM-killed
+- [ ] host cgroup pseudo-file confirms limit is set
+
+In order to implement those, we need:
+
+- [ ] `mkdir /sys/fs/cgroup/sx-container
