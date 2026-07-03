@@ -11,6 +11,8 @@
 #define SX_O_CREAT (1 << 6)
 #define SX_O_TRUNC (1 << 9)
 
+#include "sx_types.h"
+
 struct sx_stat {
 	/*
 	 * Byte sizes and signs verified by testing on a x86-64 Linux machine

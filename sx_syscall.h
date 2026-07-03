@@ -8,6 +8,7 @@
 #define SYS_stat 0x04
 #define SYS_fstat 0x05
 #define SYS_dup2 0x21
+#define SYS_clone 0x38
 #define SYS_fork 0x39
 #define SYS_execve 0x3b
 #define SYS_wait4 0x3d
@@ -17,6 +18,7 @@
 #define SYS_pivot_root 0x9b
 #define SYS_mount 0xa5
 #define SYS_umount2 0xa6
+#define SYS_sethostname 0xaa
 #define SYS_exit_group 0xe7
 
 typedef long sx_word;

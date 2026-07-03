@@ -123,15 +123,15 @@ In order to implement those, we need:
 
 Goal: fork a child into new PID and UTS namespaces, PID 1 and unique hostname
 
-- [ ] `./sx-isolate /bin/sh`, child runs in a new namespace
-- [ ] `echo $$`, in child prints 1
-- [ ] hostname in child prints 'sx-container'
-- [ ] host PID table and hostname unaffected
+- [x] `./sx-isolate /bin/bash`, child runs in a new namespace
+- [x] `echo $$`, in child prints 1
+- [x] hostname in child prints 'sx-container'
+- [x] host PID table and hostname unaffected
 
 In order to implement those, we need:
 
-- [ ] sx_clone with `CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS`
-- [ ] sx_sethostname
+- [x] sx_clone with `CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS`
+- [x] sx_sethostname
 
 ### Milestone 6, Filesystem Isolation
 

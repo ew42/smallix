@@ -1,5 +1,6 @@
 #include "sx_process.h"
 #include "sx_syscall.h"
+#include "sx_types.h"
 #include <errno.h>
 
 sx_pid_t sx_fork(void) {
@@ -55,5 +56,39 @@ int sx_dup2(int oldfd, int newfd) {
 	}
 
 	return (sx_pid_t)ret;
+
+}
+
+sx_pid_t sx_clone(unsigned long flags, void *stack, int *parent_tid, int *child_tid, unsigned long tls) {
+	sx_word ret = sx_syscall5(
+		(sx_word)SYS_clone,
+		(sx_word)flags,
+		(sx_word)stack,
+		(sx_word)parent_tid,
+		(sx_word)child_tid,
+		(sx_word)tls
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (sx_pid_t)ret;
+}
+
+int sx_sethostname(const char *name, sx_size_t len) {
+	sx_word ret = sx_syscall2(
+		(sx_word)SYS_sethostname,
+		(sx_word)name,
+		(sx_word)len
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (int)ret;
 
 }
