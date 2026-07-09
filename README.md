@@ -137,18 +137,18 @@ In order to implement those, we need:
 
 Goal: give the contained process its own root filesystem
 
-- [ ] `./sx-contain ./apline-rootfs /bin/sh` drops into isolated shell
-- [ ] `ls /` shows Apline filesystem
-- [ ] `ps` shows only shell (PID 1) and ps itself
-- [ ] no way to reach host filesystem
+- [x] `./sx-contain ./alpine-rootfs /bin/sh` drops into isolated shell
+- [x] `ls /` shows Alpine filesystem
+- [x] `ps` shows only shell (PID 1) and ps itself
+- [x] no way to reach host filesystem
 
 In order to implement those, we need:
 
-- [ ] bind-mount rootfs to a mount point
-- [ ] sx_pivot_root to swap it in as new root
-- [ ] `chdir("/")`
-- [ ] sx_umount2 old root with MNT_DETACH
-- [ ] sx_mount proc filesystem so /proc works inside
+- [x] bind-mount rootfs to a mount point
+- [x] sx_pivot_root to swap it in as new root
+- [x] `chdir("/")`
+- [x] sx_umount2 old root with MNT_DETACH
+- [x] sx_mount proc filesystem so /proc works inside
 
 ### Milestone 7, Resource Limits
 

@@ -11,6 +11,8 @@
 #define SX_MS_REC 16384
 #define SX_MS_PRIVATE (1<<18)
 
+#define SX_MNT_DETACH 0x2
+
 int sx_mkdir(const char *path, sx_mode_t mode);
 int sx_chdir(const char *path);
 char *sx_getcwd(char *buf, sx_size_t size);
