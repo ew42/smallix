@@ -19,6 +19,21 @@ int sx_mkdir(const char *path, sx_mode_t mode) {
 	return (int)ret;
 }
 
+int sx_rmdir(const char *path) {
+	sx_word ret = sx_syscall1(
+		(sx_word)SYS_rmdir,
+		(sx_word)path
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (int)ret;
+
+}
+
 int sx_chdir(const char *path) {
 	sx_word ret = sx_syscall1(
 		(sx_word)SYS_chdir,

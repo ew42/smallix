@@ -13,7 +13,7 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [x] sx_open
             - [x] sx_close
             - [x] sx_dup2
-            - [ ] sx_pipe
+            - [x] sx_pipe
         - [x] Processes
             - [x] sx_exit
             - [x] sx_fork
@@ -24,10 +24,10 @@ A small posix-style userland designed for Linux x86-64 in C.
             - [x] sx_fstat
             - [ ] sx_lstat
             - [ ] sx_unlink
-            - [ ] sx_mkdir
-            - [ ] sx_rmdir
-            - [ ] sx_chdir
-            - [ ] sx_getcwd
+            - [x] sx_mkdir
+            - [x] sx_rmdir
+            - [x] sx_chdir
+            - [x] sx_getcwd
         - [ ] Memory Mapping
             - [ ] sx_mmap
             - [ ] sx_munmap
@@ -154,10 +154,12 @@ In order to implement those, we need:
 
 Goal: enforce a memory ceiling on the contained process
 
-- [ ] `./sx-contain -m 64 ./alpine-roofs /bin/sh`, 64MB memory limit
-- [ ] process that allocates 128MB inside container gets OOM-killed
-- [ ] host cgroup pseudo-file confirms limit is set
+- [x] `./sx-contain -m 64 ./alpine-roofs /bin/sh`, 64MB memory limit
+- [x] process that allocates 128MB inside container gets OOM-killed
+- [x] host cgroup pseudo-file confirms limit is set
 
 In order to implement those, we need:
 
-- [ ] `mkdir /sys/fs/cgroup/sx-container
+- [x] `mkdir /sys/fs/cgroup/sx-container`
+- [x] sx_pipe, to prevent a race condition between child/parent
+- [x] sx_rmdir, to cleanup after creating the cgroup

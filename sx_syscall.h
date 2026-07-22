@@ -7,6 +7,7 @@
 #define SYS_close 0x03
 #define SYS_stat 0x04
 #define SYS_fstat 0x05
+#define SYS_pipe 0x16
 #define SYS_dup2 0x21
 #define SYS_clone 0x38
 #define SYS_fork 0x39
@@ -15,6 +16,7 @@
 #define SYS_getcwd 0x4f
 #define SYS_chdir 0x50
 #define SYS_mkdir 0x53
+#define SYS_rmdir 0x54
 #define SYS_pivot_root 0x9b
 #define SYS_mount 0xa5
 #define SYS_umount2 0xa6

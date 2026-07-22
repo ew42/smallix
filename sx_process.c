@@ -92,3 +92,17 @@ int sx_sethostname(const char *name, sx_size_t len) {
 	return (int)ret;
 
 }
+
+int sx_pipe(int pipefd[2]) {
+	sx_word ret = sx_syscall1(
+		(sx_word)SYS_pipe,
+		(sx_word)pipefd
+	);
+
+	if ((long)ret < 0) {
+		errno = (int)-ret;
+		ret = -1;
+	}
+
+	return (int)ret;
+}

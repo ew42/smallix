@@ -14,6 +14,7 @@
 #define SX_MNT_DETACH 0x2
 
 int sx_mkdir(const char *path, sx_mode_t mode);
+int sx_rmdir(const char *path);
 int sx_chdir(const char *path);
 char *sx_getcwd(char *buf, sx_size_t size);
 int sx_mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data);
