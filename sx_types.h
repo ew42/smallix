@@ -4,5 +4,6 @@
 typedef unsigned long sx_size_t;
 typedef long sx_ssize_t;
 typedef unsigned int sx_mode_t;
+typedef unsigned long sx_off_t;
 
 #endif
